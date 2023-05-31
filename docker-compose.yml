@@ -1,0 +1,21 @@
+version: '3.9'
+services:
+  ecomm:
+    image: ecomm:1.0
+    container_name: ecomm
+    networks:
+      - ecomm-bridge
+  
+#   alurabooks:
+#     image: aluradocker/alura-books:1.0
+#     container_name: alurabooks
+#     networks:
+#       - compose-bridge
+#     ports:
+#       - 3000:3000
+#     depends_on:
+#       - mongodb
+
+networks:
+   ecomm-bridge:
+     driver: bridge
