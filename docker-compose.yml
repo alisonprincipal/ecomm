@@ -6,16 +6,23 @@ services:
     networks:
       - ecomm-bridge
   
-#   alurabooks:
-#     image: aluradocker/alura-books:1.0
-#     container_name: alurabooks
-#     networks:
-#       - compose-bridge
-#     ports:
-#       - 3000:3000
-#     depends_on:
-#       - mongodb
+  mongo-ecomm:
+    image: mongo
+    container_name: mongo-ecomm
+    restart: always
+    volumes: 
+      - db-mongo-ecomm:/data/db
+    ports:
+      - 27017:27017
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: admin
+      MONGO_INITDB_ROOT_PASSWORD: secret
+    networks:
+      - ecomm-bridge
 
 networks:
    ecomm-bridge:
      driver: bridge
+volumes:
+  db-mongo-ecomm:
+
