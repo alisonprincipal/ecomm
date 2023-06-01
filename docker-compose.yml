@@ -10,8 +10,12 @@ services:
     image: mongo
     container_name: mongo-ecomm
     restart: always
-    volumes: 
+    volumes:
       - db-mongo-ecomm:/data/db
+      - type: bind
+        source: ./mongo
+        target: /mongo-scripts
+
     ports:
       - 27017:27017
     environment:
@@ -25,4 +29,6 @@ networks:
      driver: bridge
 volumes:
   db-mongo-ecomm:
+  
+
 

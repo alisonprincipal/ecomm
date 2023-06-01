@@ -1,4 +1,5 @@
 FROM node:18
+# define um diretório para trabalho
 WORKDIR /app-ecomm
 
 #define uma porta padrão para a aplicação
@@ -7,6 +8,7 @@ ARG PORT=6000
 ENV PORT=$PORT
 # expoe a porta para o usuario
 EXPOSE $PORT
+# copia todo os arquivos da raiz do projeto
 COPY . .
 RUN npm install
 ENTRYPOINT npm start
