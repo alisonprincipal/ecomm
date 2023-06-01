@@ -1,7 +1,8 @@
 version: '3.9'
 services:
   ecomm:
-    image: ecomm:1.0
+  #ao passar build no service eu acesso uma imagem local(que esta sendo criada), no build eu passo o path da img
+    build: .
     container_name: ecomm
     networks:
       - ecomm-bridge
@@ -15,7 +16,6 @@ services:
       - type: bind
         source: ./mongo
         target: /mongo-scripts
-
     ports:
       - 27017:27017
     environment:
@@ -27,6 +27,7 @@ services:
 networks:
    ecomm-bridge:
      driver: bridge
+
 volumes:
   db-mongo-ecomm:
   
