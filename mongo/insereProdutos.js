@@ -1,11 +1,11 @@
-const produtos = require("./produtos.json")
+const produtosJSON = require("./database/produtos.json")
 use("ecomm");
-const numeroDecimal = produtos.map((element=>{
-    if(element.preco){
-        element.preco = NumberDecimal(element.preco.toFixed(2))
+const convertendoPrecoProdutos = produtosJSON.map((produto=>{
+    if(produto.preco){
+        produto.preco = NumberDecimal(produto.preco.toFixed(2))
     }
-    return element
+    return produto
 }))
 
-const inserindoProdutos = db.products.insertMany(numeroDecimal)
-console.log(inserindoProdutos)
+const produtosInseridos = db.products.insertMany(convertendoPrecoProdutos)
+console.log(produtosInseridos)

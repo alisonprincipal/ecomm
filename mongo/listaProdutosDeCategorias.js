@@ -1,3 +1,3 @@
 use("ecomm");
-var produtos = db.products.find({$or:[{"categoria":"LIVROS"},{"categoria":"CELULARES"}]});
-console.log(produtos); 
+const filtrandoProdutos = db.products.find({$or:[{"categoria":"LIVROS"},{"categoria":"CELULARES"}]});
+console.log(filtrandoProdutos); 

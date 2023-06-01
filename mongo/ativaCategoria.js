@@ -1,3 +1,3 @@
 use("ecomm");
-var result = db.categories.updateOne({"nome":"ESPORTE"},{$set:{"status":"ATIVA"}});
+const result = db.categories.updateOne({"nome":"ESPORTE"},{$set:{"status":"ATIVA"}});
 console.log(result);
