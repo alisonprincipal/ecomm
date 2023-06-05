@@ -1,21 +1,33 @@
 version: '3.9'
 services:
   ecomm:
-    image: ecomm:1.0
+  #ao passar build no service eu acesso uma imagem local(que esta sendo criada), no build eu passo o path da img
+    build: .
     container_name: ecomm
     networks:
       - ecomm-bridge
   
-#   alurabooks:
-#     image: aluradocker/alura-books:1.0
-#     container_name: alurabooks
-#     networks:
-#       - compose-bridge
-#     ports:
-#       - 3000:3000
-#     depends_on:
-#       - mongodb
+  mongo-ecomm:
+    image: mongo
+    container_name: mongo-ecomm
+    restart: always
+    volumes:
+      - db-mongo-ecomm:/data/db
+      - type: bind
+        source: ./mongo
+        target: /mongo-scripts
+    ports:
+      - 27017:27017
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: admin
+      MONGO_INITDB_ROOT_PASSWORD: secret
+    networks:
+      - ecomm-bridge
 
 networks:
    ecomm-bridge:
      driver: bridge
+
+volumes:
+  db-mongo-ecomm:
+  
