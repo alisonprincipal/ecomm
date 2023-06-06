@@ -3,11 +3,9 @@ const schemaProdutos = db.runCommand({
     collMod: "products",
     validator: {
         $jsonSchema: {
-            //tipo de dados da minha coleção
             bsonType: "object",
             // impede de adcionar campos além dos validados
             "additionalProperties": false,
-            // campos que serão validados
             required: ["_id", "nome", "descricao", "slug", "preco", "estoque", "categoria"],
             properties: {
                 _id: {
