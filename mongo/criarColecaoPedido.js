@@ -5,7 +5,7 @@ const newCollection = db.createCollection("orders", {
         $jsonSchema: {
             bsonType: "object",
             "additionalProperties": false,
-            required: ["_id", "nome", "email", "senha", "dataCriacao", "cpf", "telefone", "endereco"],
+            required: ["_id", "dataPedido", "account", "enderecoEntrega", "pedido"],
             properties: {
                 _id: {
                     bsonType: "objectId",
@@ -71,6 +71,7 @@ const newCollection = db.createCollection("orders", {
                 },
                 pedido: {
                     bsonType: "array",
+                    minItems: 1,
                     required: ["producId", "quantidade", "precoUnitario"],
                     properties: {
                         producId: {
@@ -82,19 +83,18 @@ const newCollection = db.createCollection("orders", {
                             description: "informe corretamente o a quantidade do produto"
                         },
                         desconto: {
-                            bsonType:"int",
+                            bsonType: "int",
                             minimum: 0,
                             exclusiveMinimum: true,
                             description: "informe corretamente o desconto do produto"
                         },
                         precoUnitario: {
-                            bsonType:"int",
+                            bsonType: "int",
                             minimum: 0,
                             exclusiveMinimum: true,
                             description: "informe corretamente o precoUnitario do produto"
                         },
                     },
-                    minItems: 1,
                     description: "informe corretamente o bairro do endereço"
                 },
             }
