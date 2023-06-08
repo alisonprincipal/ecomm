@@ -2,9 +2,8 @@ use('ecomm')
 const buscandoProduto = db.products.findOne({
     nome: "Galaxy Tab S8"
 })
-const quantidadePedido = 2
-console.log(buscandoProduto._id)
 
+const quantidadePedido = 2
 const atualizandoProduto = () => {
     const produto = db.products.updateOne({
         _id: buscandoProduto._id,
@@ -20,4 +19,5 @@ const atualizandoProduto = () => {
     })
     console.log(produto)
 }
-atualizandoProduto()
+// só executo a função se o produto da pesquisa for encontrado
+buscandoProduto && atualizandoProduto()
