@@ -12,7 +12,7 @@ const atualizandoProduto = () => {
             $gt: quantidadePedido
         }
     }, {
-        // incrementando no total do estoque
+         // incrementando no total do estoque
         $inc: {
             estoque: -quantidadePedido
         },
