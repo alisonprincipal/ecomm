@@ -2,12 +2,16 @@
     "name": "ecomm",
     "version": "1.0.0",
     "description": "",
+    "type": "module",
     "main": "src/main.js",
     "scripts": {
-      "start": "node src/main.js",
-      "test": "echo \"Error: no test specified\" && exit 1"
+        "start": "node src/main.js",
+        "test": "echo \"Error: no test specified\" && exit 1",
+        "cli:listarCategorias": "node ./src/cli/cli.js --listarCategorias"
     },
     "author": "",
-    "license": "MIT"
-  }
-
+    "license": "MIT",
+    "devDependencies": {
+        "chalk": "^5.2.0"
+    }
+}
