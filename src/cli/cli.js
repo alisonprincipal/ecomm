@@ -9,10 +9,19 @@ const processarComando = async () => {
     // no switch eu verifico qual o comando passado via terminal
     switch (argumentosComando[2]) {
         case '--listarCategorias':
-            const litandoCategorias = await CategoryService.findCategories()
-            console.log(chalk.black.bgYellow('Categorias'), litandoCategorias)
 
+            const listandoCategorias = await CategoryService.findCategories()
+            console.log(chalk.black.bgYellow('Categorias'), listandoCategorias)
             break;
+
+        case '--recuperarCategoriaPorId':
+
+            const idProduct = Number(argumentosComando[3])
+            const categoriaPorId = await CategoryService.findCategoryById(idProduct)
+            //so retorna a mensagem personalizada se o produto for encontrado
+            categoriaPorId && console.log(chalk.black.bgYellow('Categoria encontrada'), categoriaPorId)
+            break;
+            
         default:
             console.log('COMANDO INVALIDO') // code block
     }
