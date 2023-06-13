@@ -1,0 +1,42 @@
+openapi: 3.0.1
+info:
+  title: API de Categorias
+  description: Uma Api do Json-server para fins didáticos
+  version: 0.0.1
+  termsOfService: https://siteparaservicos.com
+  contact:
+    name: Suporte a Devs
+    email: contato@example.com
+    url: https://siteparaservicos.com
+  license:
+    name: "Licença para rodar Api"
+    url: https://siteparalicencas.com
+externalDocs:
+  description: Documentação burocrática
+  url: https://siteparadocumentaçãextra.com
+servers:
+- url: http://localhost:3000
+  description: API de Teste
+- url: http://localhost:3001
+  description: API de producao
+paths:
+  /categories:
+    get:
+      summary: Recupera todas as categorias
+      responses:
+        200:
+          description: Sucesso
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: integer
+                    nome:
+                      type: string
+                    status:
+                      type: string
+                    
