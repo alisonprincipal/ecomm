@@ -23,6 +23,8 @@ paths:
   /categories:
     get:
       summary: Recupera todas as categorias
+      tags: 
+        - Category
       responses:
         200:
           description: Sucesso
@@ -42,6 +44,8 @@ paths:
   /admin/categories:
     post:
       summary: Cria uma nova categorias
+      tags: 
+        - Category
       requestBody:
         content:
           application/json:
@@ -73,6 +77,8 @@ paths:
           required: true
     get:
       summary: Recupera uma categoria pelo ID
+      tags: 
+        - Category
       responses:
         200:
           description: Sucesso
@@ -101,6 +107,8 @@ paths:
           required: true
     put:
         summary: Altera dados de uma categoria pelo ID
+        tags: 
+        - Category
         requestBody:
           content:
             application/json:
@@ -132,6 +140,8 @@ paths:
                 example: "Not Found"
     patch:
         summary: Ativa  uma categoria pelo ID
+        tags: 
+        - Category
         responses:
           200:
             description: Sucesso
@@ -154,6 +164,189 @@ paths:
                 example: "Not Found"
     delete:
         summary: Remove uma categoria pelo ID
+        tags: 
+        - Category
+        responses:
+          204:
+            description: Sucesso
+          404:
+            description: Categoria não encontrada
+            content:
+              application/sjon:
+                example: "Not Found"
+  /product:
+    get:
+      summary: Recupera todos os produtos
+      tags: 
+        - Product
+      responses:
+        200:
+          description: Sucesso
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: integer
+                    nome:
+                      type: string
+                    descricao:
+                      type: string
+                    slug:
+                      type: string
+                    preco_unitario:
+                      type: string
+                    estoque:
+                      type: string
+                    _idCategoria:
+                      type: string
+  /admin/product:
+    post:
+      summary: Cria um novo produto
+      tags: 
+        - Product
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                nome:
+                  type: string
+                descricao:
+                  type: string
+                slug:
+                  type: string
+                preco_unitario:
+                  type: string
+                estoque:
+                  type: string
+                _idCategoria:
+                  type: string
+      responses:
+        201:
+          description: Sucesso
+          content:
+            application/json:
+              schema:
+                  type: object
+                  properties:
+                    id:
+                      type: integer
+                    nome:
+                      type: string
+                    descricao:
+                      type: string
+                    slug:
+                      type: string
+                    preco_unitario:
+                      type: string
+                    estoque:
+                      type: string
+                    _idCategoria:
+                      type: string
+  /product/{id}:
+    parameters:
+        - name: id
+          in: path
+          schema:
+            type: integer
+          required: true
+    get:
+      summary: Recupera um produto pelo ID
+      tags: 
+        - Product
+      responses:
+        200:
+          description: Sucesso
+          content:
+            application/json:
+              schema:
+                  type: object
+                  properties:
+                    id:
+                      type: integer
+                    nome:
+                      type: string
+                    descricao:
+                      type: string
+                    slug:
+                      type: string
+                    preco_unitario:
+                      type: string
+                    estoque:
+                      type: string
+                    _idCategoria:
+                      type: string
+        404:
+          description: Categoria não encontrada
+          content:
+            application/json:
+              example: "Not Found"
+  /admin/product/{id}:
+    parameters:
+        - name: id
+          in: path
+          schema:
+            type: integer
+          required: true
+    put:
+        summary: Altera dados de um produto pelo ID
+        tags: 
+        - Product
+        requestBody:
+          content:
+            application/json:
+              schema:
+                  type: object
+                  properties:
+                    nome:
+                      type: string
+                    descricao:
+                      type: string
+                    slug:
+                      type: string
+                    preco_unitario:
+                      type: string
+                    estoque:
+                      type: string
+                    _idCategoria:
+                      type: string
+        responses:
+          200:
+            description: Sucesso
+            content:
+              application/json:
+                schema:
+                  type: object
+                  properties:
+                    id:
+                      type: integer
+                    nome:
+                      type: string
+                    descricao:
+                      type: string
+                    slug:
+                      type: string
+                    preco_unitario:
+                      type: string
+                    estoque:
+                      type: string
+                    _idCategoria:
+                      type: string
+          404:
+            description: Categoria não encontrada
+            content:
+              application/sjon:
+                example: "Not Found"
+   
+    delete:
+        summary: Remove um produto pelo ID
+        tags: 
+        - Product
         responses:
           204:
             description: Sucesso
