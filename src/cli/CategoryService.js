@@ -1,7 +1,5 @@
 import chalk from "chalk"
 import fs from 'fs'
-const caminhoArquivo = process.argv
-
 export class CategoryService {
     static async findCategories() {
 

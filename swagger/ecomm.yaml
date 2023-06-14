@@ -92,3 +92,73 @@ paths:
           content:
             application/json:
               example: "Not Found"
+  /admin/categories/{id}:
+    parameters:
+        - name: id
+          in: path
+          schema:
+            type: integer
+          required: true
+    put:
+        summary: Altera dados de uma categoria pelo ID
+        requestBody:
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  nome:
+                    type: string
+                  status:
+                    type: string
+        responses:
+          200:
+            description: Sucesso
+            content:
+              application/json:
+                schema:
+                    type: object
+                    properties:
+                      id:
+                        type: integer
+                      nome:
+                        type: string
+                      status:
+                        type: string
+          404:
+            description: Categoria não encontrada
+            content:
+              application/sjon:
+                example: "Not Found"
+    patch:
+        summary: Ativa  uma categoria pelo ID
+        responses:
+          200:
+            description: Sucesso
+            content:
+              application/json:
+                schema:
+                    type: object
+                    properties:
+                      id:
+                        type: integer
+                      nome:
+                        type: string
+                      status:
+                        type: string
+                        
+          404:
+            description: Categoria não encontrada
+            content:
+              application/sjon:
+                example: "Not Found"
+    delete:
+        summary: Remove uma categoria pelo ID
+        responses:
+          204:
+            description: Sucesso
+          404:
+            description: Categoria não encontrada
+            content:
+              application/sjon:
+                example: "Not Found"
