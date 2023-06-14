@@ -4,7 +4,7 @@ const usuario = db.accounts.findOne({
     nome: 'usuario3'
 })
 
-const teste = () => {
+const estatisticaUsuario = () => {
     const estatistica = db.orders.aggregate([
 
         // uso o match para fazer o filtro e retornar somente os elementos da minha condicional
@@ -52,4 +52,4 @@ const teste = () => {
     ]).pretty()
     console.log(estatistica)
 }
-usuario && teste()
+usuario && estatisticaUsuario()
