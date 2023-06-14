@@ -1,6 +1,6 @@
 openapi: 3.0.1
 info:
-  title: API de Categorias
+  title: API Json-server 
   description: Uma Api do Json-server para fins didáticos
   version: 0.0.1
   termsOfService: https://siteparaservicos.com
@@ -352,6 +352,235 @@ paths:
             description: Sucesso
           404:
             description: Categoria não encontrada
+            content:
+              application/sjon:
+                example: "Not Found"
+  /user:
+    get:
+      summary: Recupera todos os usuarios
+      tags: 
+        - User
+      responses:
+        200:
+          description: Sucesso
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: integer
+                    nome:
+                      type: string
+                    email:
+                      type: string
+                    senha:
+                      type: string
+                    cpf:
+                      type: string
+                    telefone:
+                      type: string
+                    rua:
+                      type: string
+                    numero:
+                      type: string
+                    cep:
+                      type: string
+                    cidade:
+                      type: string
+                    estado:
+                      type: string
+  /admin/user:
+    post:
+      summary: Cria um novo usuario
+      tags: 
+        - User
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                nome:
+                  type: string
+                email:
+                  type: string
+                senha:
+                  type: string
+                cpf:
+                  type: string
+                telefone:
+                  type: string
+                rua:
+                  type: string
+                numero:
+                  type: string
+                cep:
+                  type: string
+                cidade:
+                  type: string
+                estado:
+                  type: string
+      responses:
+        201:
+          description: Sucesso
+          content:
+            application/json:
+              schema:
+                  type: object
+                  properties:
+                    id:
+                      type: integer
+                    nome:
+                      type: string
+                    email:
+                      type: string
+                    senha:
+                      type: string
+                    cpf:
+                      type: string
+                    telefone:
+                      type: string
+                    rua:
+                      type: string
+                    numero:
+                      type: string
+                    cep:
+                      type: string
+                    cidade:
+                      type: string
+                    estado:
+                      type: string
+  /user/{id}:
+    parameters:
+        - name: id
+          in: path
+          schema:
+            type: integer
+          required: true
+    get:
+      summary: Recupera um usuario pelo ID
+      tags: 
+        - User
+      responses:
+        200:
+          description: Sucesso
+          content:
+            application/json:
+              schema:
+                  type: object
+                  properties:
+                    id:
+                      type: integer
+                    nome:
+                      type: string
+                    email:
+                      type: string
+                    senha:
+                      type: string
+                    cpf:
+                      type: string
+                    telefone:
+                      type: string
+                    rua:
+                      type: string
+                    numero:
+                      type: string
+                    cep:
+                      type: string
+                    cidade:
+                      type: string
+                    estado:
+                      type: string
+        404:
+          description: Usuario não encontrado
+          content:
+            application/json:
+              example: "Not Found"
+  /admin/user/{id}:
+    parameters:
+        - name: id
+          in: path
+          schema:
+            type: integer
+          required: true
+    put:
+        summary: Altera dados de um usuario pelo ID
+        tags: 
+        - User
+        requestBody:
+          content:
+            application/json:
+              schema:
+                  type: object
+                  properties:
+                    nome:
+                      type: string
+                    email:
+                      type: string
+                    senha:
+                      type: string
+                    cpf:
+                      type: string
+                    telefone:
+                      type: string
+                    rua:
+                      type: string
+                    numero:
+                      type: string
+                    cep:
+                      type: string
+                    cidade:
+                      type: string
+                    estado:
+                      type: string
+        responses:
+          200:
+            description: Sucesso
+            content:
+              application/json:
+                schema:
+                  type: object
+                  properties:
+                    id:
+                      type: integer
+                    nome:
+                      type: string
+                    email:
+                      type: string
+                    senha:
+                      type: string
+                    cpf:
+                      type: string
+                    telefone:
+                      type: string
+                    rua:
+                      type: string
+                    numero:
+                      type: string
+                    cep:
+                      type: string
+                    cidade:
+                      type: string
+                    estado:
+                      type: string
+          404:
+            description: Usuario não encontrado
+            content:
+              application/sjon:
+                example: "Not Found"
+   
+    delete:
+        summary: Remove um usuario pelo ID
+        tags: 
+        - User
+        responses:
+          204:
+            description: Sucesso
+          404:
+            description: Usuario não encontrado
             content:
               application/sjon:
                 example: "Not Found"
