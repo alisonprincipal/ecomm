@@ -24,7 +24,7 @@ paths:
     get:
       summary: Recupera todas as categorias
       tags: 
-        - Category
+        - Categories
       responses:
         200:
           description: Sucesso
@@ -45,7 +45,7 @@ paths:
     post:
       summary: Cria uma nova categorias
       tags: 
-        - Category
+        - Categories
       requestBody:
         content:
           application/json:
@@ -78,7 +78,7 @@ paths:
     get:
       summary: Recupera uma categoria pelo ID
       tags: 
-        - Category
+        - Categories
       responses:
         200:
           description: Sucesso
@@ -108,7 +108,7 @@ paths:
     put:
         summary: Altera dados de uma categoria pelo ID
         tags: 
-        - Category
+        - Categories
         requestBody:
           content:
             application/json:
@@ -141,7 +141,7 @@ paths:
     patch:
         summary: Ativa  uma categoria pelo ID
         tags: 
-        - Category
+        - Categories
         responses:
           200:
             description: Sucesso
@@ -165,7 +165,7 @@ paths:
     delete:
         summary: Remove uma categoria pelo ID
         tags: 
-        - Category
+        - Categories
         responses:
           204:
             description: Sucesso
@@ -178,7 +178,7 @@ paths:
     get:
       summary: Recupera todos os produtos
       tags: 
-        - Product
+        - Products
       responses:
         200:
           description: Sucesso
@@ -207,7 +207,7 @@ paths:
     post:
       summary: Cria um novo produto
       tags: 
-        - Product
+        - Products
       requestBody:
         content:
           application/json:
@@ -258,7 +258,7 @@ paths:
     get:
       summary: Recupera um produto pelo ID
       tags: 
-        - Product
+        - Products
       responses:
         200:
           description: Sucesso
@@ -296,7 +296,7 @@ paths:
     put:
         summary: Altera dados de um produto pelo ID
         tags: 
-        - Product
+        - Products
         requestBody:
           content:
             application/json:
@@ -346,7 +346,7 @@ paths:
     delete:
         summary: Remove um produto pelo ID
         tags: 
-        - Product
+        - Products
         responses:
           204:
             description: Sucesso
@@ -355,11 +355,11 @@ paths:
             content:
               application/sjon:
                 example: "Not Found"
-  /user:
+  /accounts:
     get:
       summary: Recupera todos os usuarios
       tags: 
-        - User
+        - Accounts
       responses:
         200:
           description: Sucesso
@@ -392,11 +392,11 @@ paths:
                       type: string
                     estado:
                       type: string
-  /admin/user:
+  /admin/accounts:
     post:
       summary: Cria um novo usuario
       tags: 
-        - User
+        - Accounts
       requestBody:
         content:
           application/json:
@@ -453,7 +453,7 @@ paths:
                       type: string
                     estado:
                       type: string
-  /user/{id}:
+  /accounts/{id}:
     parameters:
         - name: id
           in: path
@@ -463,7 +463,7 @@ paths:
     get:
       summary: Recupera um usuario pelo ID
       tags: 
-        - User
+        - Accounts
       responses:
         200:
           description: Sucesso
@@ -499,7 +499,7 @@ paths:
           content:
             application/json:
               example: "Not Found"
-  /admin/user/{id}:
+  /admin/accounts/{id}:
     parameters:
         - name: id
           in: path
@@ -509,7 +509,7 @@ paths:
     put:
         summary: Altera dados de um usuario pelo ID
         tags: 
-        - User
+        - Accounts
         requestBody:
           content:
             application/json:
@@ -575,7 +575,7 @@ paths:
     delete:
         summary: Remove um usuario pelo ID
         tags: 
-        - User
+        - Accounts
         responses:
           204:
             description: Sucesso
