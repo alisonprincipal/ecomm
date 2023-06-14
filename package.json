@@ -8,7 +8,8 @@
         "start": "node src/main.js",
         "test": "echo \"Error: no test specified\" && exit 1",
         "cli:listarCategorias": "node ./src/cli/cli.js --listarCategorias",
-        "cli:recuperarCategoriaPorId": "node ./src/cli/cli.js --recuperarCategoriaPorId"
+        "cli:recuperarCategoriaPorId": "node ./src/cli/cli.js --recuperarCategoriaPorId",
+        "cli:novaCategoria": "node ./src/cli/cli.js --inserirCategoria"
     },
     "author": "",
     "license": "MIT",

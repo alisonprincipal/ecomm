@@ -21,7 +21,13 @@ const processarComando = async () => {
             //so retorna a mensagem personalizada se o produto for encontrado
             categoriaPorId && console.log(chalk.black.bgYellow('Categoria encontrada'), categoriaPorId)
             break;
+
+        case '--inserirCategoria':
+            const novaCategoria = await CategoryService.createCategory()
+            console.log(chalk.green('Nova categoria Adicionada:'),novaCategoria)
             
+            break;
+
         default:
             console.log('COMANDO INVALIDO') // code block
     }
