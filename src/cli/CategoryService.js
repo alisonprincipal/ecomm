@@ -57,4 +57,26 @@ export class CategoryService {
             console.log(error)
         }
     }
+    static async updateCategory(idCategoria,dadosCategorya) {
+        try {
+            const estrutura = {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: dadosCategorya
+            }
+            const request = await fetch(`http://localhost:3000/categories/${idCategoria}`, estrutura)
+            const response = await request.json()
+            if(request.ok){
+                console.log('response status:', chalk.green(request.status))
+                return response
+            }else{
+                console.log('response status:', chalk.red(request.status))
+            }
+
+        } catch (error) {
+            console.log(error)
+        }
+    }
 }

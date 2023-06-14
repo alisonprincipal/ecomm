@@ -2,6 +2,7 @@ import chalk from 'chalk'
 import {
     CategoryService
 } from './CategoryService.js'
+import fs from 'fs'
 // recupero os argumentos passados no comando cli
 const argumentosComando = process.argv
 
@@ -24,8 +25,19 @@ const processarComando = async () => {
 
         case '--inserirCategoria':
             const novaCategoria = await CategoryService.createCategory()
-            console.log(chalk.green('Nova categoria Adicionada:'),novaCategoria)
-            
+            console.log(chalk.green('Nova categoria Adicionada:'), novaCategoria)
+
+            break;
+
+        case '--atualizarCategoria':
+            const idArgumento = argumentosComando[3]
+            const caminhoArquivo = argumentosComando[4]
+
+            const encoding = 'utf-8'
+            const objetoCategoria = await fs.promises.readFile(caminhoArquivo, encoding)
+            const updateCategory = await CategoryService.updateCategory(idArgumento, objetoCategoria)
+            updateCategory && console.log(chalk.green('Categoria atualizada:'), updateCategory)
+
             break;
 
         default:
