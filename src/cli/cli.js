@@ -40,6 +40,13 @@ const processarComando = async () => {
 
             break;
 
+        case '--excluirCategoria':
+            const id = argumentosComando[3]
+            const deleteCategory = await CategoryService.deleteCategory(id)
+            deleteCategory && console.log(chalk.green('Categoria excluida com sucesso'))
+
+            break;
+
         default:
             console.log('COMANDO INVALIDO') // code block
     }

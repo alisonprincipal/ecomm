@@ -57,7 +57,7 @@ export class CategoryService {
             console.log(error)
         }
     }
-    static async updateCategory(idCategoria,dadosCategorya) {
+    static async updateCategory(idCategoria, dadosCategorya) {
         try {
             const estrutura = {
                 method: 'PUT',
@@ -68,10 +68,27 @@ export class CategoryService {
             }
             const request = await fetch(`http://localhost:3000/categories/${idCategoria}`, estrutura)
             const response = await request.json()
-            if(request.ok){
+            if (request.ok) {
                 console.log('response status:', chalk.green(request.status))
                 return response
-            }else{
+            } else {
+                console.log('response status:', chalk.red(request.status))
+            }
+
+        } catch (error) {
+            console.log(error)
+        }
+    }
+    static async deleteCategory(idCategoria) {
+        try {
+            const estrutura = {
+                method: 'DELETE'
+            }
+            const request = await fetch(`http://localhost:3000/categories/${idCategoria}`, estrutura)
+            if (request.ok) {
+                console.log('response status:', chalk.green(request.status))
+                return true
+            } else {
                 console.log('response status:', chalk.red(request.status))
             }
 
