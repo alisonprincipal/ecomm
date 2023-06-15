@@ -31,18 +31,11 @@ paths:
           content:
             application/json:
               schema:
-                type: array
-                items:
-                  type: object
-                  properties:
-                    id:
-                      type: integer
-                    nome:
-                      type: string
-                    status:
-                      type: string
+                $ref: '#/components/schemas/Categorias'
   /admin/categories:
     post:
+      security: 
+        - auth: []
       summary: Cria uma nova categorias
       tags: 
         - Categories
@@ -60,14 +53,7 @@ paths:
           content:
             application/json:
               schema:
-                  type: object
-                  properties:
-                    id:
-                      type: integer
-                    nome:
-                      type: string
-                    status:
-                      type: string
+                  $ref: '#/components/schemas/Categoria'
   /categories/{id}:
     parameters:
         - name: id
@@ -85,19 +71,9 @@ paths:
           content:
             application/json:
               schema:
-                type: object
-                properties:
-                    id:
-                      type: integer
-                    nome:
-                      type: string
-                    status:
-                      type: string
+                $ref: '#/components/schemas/Categoria'
         404:
-          description: Categoria não encontrada
-          content:
-            application/json:
-              example: "Not Found"
+          $ref: '#/components/responses/Notfound'
   /admin/categories/{id}:
     parameters:
         - name: id
@@ -106,6 +82,8 @@ paths:
             type: integer
           required: true
     put:
+        security: 
+        - auth: []
         summary: Altera dados de uma categoria pelo ID
         tags: 
         - Categories
@@ -125,20 +103,12 @@ paths:
             content:
               application/json:
                 schema:
-                    type: object
-                    properties:
-                      id:
-                        type: integer
-                      nome:
-                        type: string
-                      status:
-                        type: string
+                    $ref: '#/components/schemas/Categoria'
           404:
-            description: Categoria não encontrada
-            content:
-              application/sjon:
-                example: "Not Found"
+            $ref: '#/components/responses/Notfound'
     patch:
+        security: 
+        - auth: []
         summary: Ativa  uma categoria pelo ID
         tags: 
         - Categories
@@ -148,21 +118,13 @@ paths:
             content:
               application/json:
                 schema:
-                    type: object
-                    properties:
-                      id:
-                        type: integer
-                      nome:
-                        type: string
-                      status:
-                        type: string
+                    $ref: '#/components/schemas/Categoria'
                         
           404:
-            description: Categoria não encontrada
-            content:
-              application/sjon:
-                example: "Not Found"
+            $ref: '#/components/responses/Notfound'
     delete:
+        security: 
+        - auth: []
         summary: Remove uma categoria pelo ID
         tags: 
         - Categories
@@ -170,10 +132,7 @@ paths:
           204:
             description: Sucesso
           404:
-            description: Categoria não encontrada
-            content:
-              application/sjon:
-                example: "Not Found"
+            $ref: '#/components/responses/Notfound'
   /product:
     get:
       summary: Recupera todos os produtos
@@ -205,6 +164,8 @@ paths:
                       type: string
   /admin/product:
     post:
+      security: 
+        - auth: []
       summary: Cria um novo produto
       tags: 
         - Products
@@ -294,6 +255,8 @@ paths:
             type: integer
           required: true
     put:
+        security: 
+        - auth: []
         summary: Altera dados de um produto pelo ID
         tags: 
         - Products
@@ -344,6 +307,8 @@ paths:
                 example: "Not Found"
    
     delete:
+        security: 
+        - auth: []
         summary: Remove um produto pelo ID
         tags: 
         - Products
@@ -394,6 +359,8 @@ paths:
                       type: string
   /admin/accounts:
     post:
+      security: 
+        - auth: []
       summary: Cria um novo usuario
       tags: 
         - Accounts
@@ -507,6 +474,8 @@ paths:
             type: integer
           required: true
     put:
+        security: 
+        - auth: []
         summary: Altera dados de um usuario pelo ID
         tags: 
         - Accounts
@@ -573,6 +542,8 @@ paths:
                 example: "Not Found"
    
     delete:
+        security: 
+        - auth: []
         summary: Remove um usuario pelo ID
         tags: 
         - Accounts
@@ -584,3 +555,158 @@ paths:
             content:
               application/sjon:
                 example: "Not Found"
+  /orders:
+    post:
+      summary: Cria um novo pedido
+      tags: 
+        - Orders
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                _idCliente:
+                  type: integer
+                rua_entrega:
+                  type: string
+                numero_entrega:
+                  type: string
+                complemento_entrega:
+                  type: string
+                cep_entrega:
+                  type: string
+                cidade_entrga:
+                  type: string
+                estado_entrega:
+                  type: string
+                pedido:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      _idProduto:
+                        type: integer
+                      quantidade:
+                        type: integer
+                      desconto:
+                        type: number
+                      preco_unitario:
+                        type: number
+      responses:
+        201:
+          description: Sucesso
+          content:
+            application/json:
+              schema:
+                  type: object
+                  properties:
+                    _idPedido:
+                      type: integer
+                    _idCliente:
+                      type: integer
+                    rua_entrega:
+                      type: string
+                    numero_entrega:
+                      type: string
+                    complemento_entrega:
+                      type: string
+                    cep_entrega:
+                      type: string
+                    cidade_entrga:
+                      type: string
+                    estado_entrega:
+                      type: string
+                    pedido:
+                      type: array
+                      items:
+                        type: object
+                        properties:
+                          _idProduto:
+                            type: integer
+                          quantidade:
+                            type: integer
+                          desconto:
+                            type: number
+                          preco_unitario:
+                            type: number
+  /orders/{id}:
+    parameters:
+        - name: id
+          in: path
+          schema:
+            type: integer
+          required: true
+    get:
+      summary: Recupera um pedido pelo ID
+      tags: 
+        - Orders
+      responses:
+        200:
+          description: Sucesso
+          content:
+            application/json:
+              schema:
+                  type: object
+                  properties:
+                    _idPedido:
+                      type: integer
+                    _idCliente:
+                      type: integer
+                    rua_entrega:
+                      type: string
+                    numero_entrega:
+                      type: string
+                    complemento_entrega:
+                      type: string
+                    cep_entrega:
+                      type: string
+                    cidade_entrga:
+                      type: string
+                    estado_entrega:
+                      type: string
+                    pedido:
+                      type: array
+                      items:
+                        type: object
+                        properties:
+                          _idProduto:
+                            type: integer
+                          quantidade:
+                            type: integer
+                          desconto:
+                            type: number
+                          preco_unitario:
+                            type: number
+        404:
+          description: Pedido não encontrado
+          content:
+            application/json:
+              example: "Not Found"
+components:
+  schemas:
+    Categoria:
+      type: object
+      properties:
+              id:
+                type: integer
+              nome:
+                type: string
+              status:
+                type: string
+    Categorias:
+      type: array
+      items:
+        $ref: "#/components/schemas/Categoria"
+  responses:
+      Notfound:
+        description : Categoria não encontrada
+        content:
+          application/json:
+            example: "Not Found"
+    
+  securitySchemes:
+    auth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
