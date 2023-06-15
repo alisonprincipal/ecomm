@@ -160,8 +160,8 @@ paths:
                       type: string
                     estoque:
                       type: string
-                    _idCategoria:
-                      type: string
+                    categoria:
+                      $ref: '#/components/schemas/Categoria'
   /admin/product:
     post:
       security: 
@@ -240,8 +240,8 @@ paths:
                       type: string
                     estoque:
                       type: string
-                    _idCategoria:
-                      type: string
+                    categoria:
+                      $ref: '#/components/schemas/Categoria'
         404:
           description: Produto não encontrado
           content:
