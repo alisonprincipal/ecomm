@@ -243,7 +243,7 @@ paths:
                     _idCategoria:
                       type: string
         404:
-          description: Categoria não encontrada
+          description: Produto não encontrado
           content:
             application/json:
               example: "Not Found"
@@ -320,6 +320,126 @@ paths:
             content:
               application/sjon:
                 example: "Not Found"
+  /product/find/price={price}:
+    get:
+      parameters:
+          - name: price
+            in: path
+            schema:
+              type: number
+            required: true
+      summary: Recupera produtos pelo preco
+      tags: 
+        - Products
+      responses:
+        200:
+            description: Sucesso
+            content:
+              application/json:
+                schema:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      id:
+                        type: integer
+                      nome:
+                        type: string
+                      descricao:
+                        type: string
+                      slug:
+                        type: string
+                      preco_unitario:
+                        type: string
+                      estoque:
+                        type: string
+                      _idCategoria:
+                        type: string
+        404:
+          description: Produto não encontrado
+          content:
+            application/json:
+              example: "Not Found"
+  /product/find/categoria={categoria}:
+    get:
+      parameters:
+          - name: categoria
+            in: path
+            schema:
+              type: number
+            required: true
+      summary: Recupera produtos pela categoria
+      tags: 
+        - Products
+      responses:
+        200:
+            description: Sucesso
+            content:
+              application/json:
+                schema:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      id:
+                        type: integer
+                      nome:
+                        type: string
+                      descricao:
+                        type: string
+                      slug:
+                        type: string
+                      preco_unitario:
+                        type: string
+                      estoque:
+                        type: string
+                      _idCategoria:
+                        type: string
+        404:
+          description: Produto não encontrado
+          content:
+            application/json:
+              example: "Not Found"
+  /product/find/estoque={estoque}:
+    get:
+      parameters:
+          - name: estoque
+            in: path
+            schema:
+              type: number
+            required: true
+      summary: Recupera produtos pelo estoque
+      tags: 
+        - Products
+      responses:
+        200:
+            description: Sucesso
+            content:
+              application/json:
+                schema:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      id:
+                        type: integer
+                      nome:
+                        type: string
+                      descricao:
+                        type: string
+                      slug:
+                        type: string
+                      preco_unitario:
+                        type: string
+                      estoque:
+                        type: string
+                      _idCategoria:
+                        type: string
+        404:
+          description: Produto não encontrado
+          content:
+            application/json:
+              example: "Not Found" 
   /accounts:
     get:
       summary: Recupera todos os usuarios
