@@ -73,7 +73,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/Categoria'
         404:
-          $ref: '#/components/responses/Notfound'
+          $ref: '#/components/responses/Notfound-Categoria'
   /admin/categories/{id}:
     parameters:
         - name: id
@@ -105,7 +105,7 @@ paths:
                 schema:
                     $ref: '#/components/schemas/Categoria'
           404:
-            $ref: '#/components/responses/Notfound'
+            $ref: '#/components/responses/Notfound-Categoria'
     patch:
         security: 
         - auth: []
@@ -121,7 +121,7 @@ paths:
                     $ref: '#/components/schemas/Categoria'
                         
           404:
-            $ref: '#/components/responses/Notfound'
+            $ref: '#/components/responses/Notfound-Categoria'
     delete:
         security: 
         - auth: []
@@ -132,7 +132,7 @@ paths:
           204:
             description: Sucesso
           404:
-            $ref: '#/components/responses/Notfound'
+            $ref: '#/components/responses/Notfound-Categoria'
   /product:
     get:
       summary: Recupera todos os produtos
@@ -144,24 +144,7 @@ paths:
           content:
             application/json:
               schema:
-                type: array
-                items:
-                  type: object
-                  properties:
-                    id:
-                      type: integer
-                    nome:
-                      type: string
-                    descricao:
-                      type: string
-                    slug:
-                      type: string
-                    preco_unitario:
-                      type: string
-                    estoque:
-                      type: string
-                    categoria:
-                      $ref: '#/components/schemas/Categoria'
+                $ref: "#/components/schemas/Produtos"
   /admin/product:
     post:
       security: 
@@ -226,27 +209,9 @@ paths:
           content:
             application/json:
               schema:
-                  type: object
-                  properties:
-                    id:
-                      type: integer
-                    nome:
-                      type: string
-                    descricao:
-                      type: string
-                    slug:
-                      type: string
-                    preco_unitario:
-                      type: string
-                    estoque:
-                      type: string
-                    categoria:
-                      $ref: '#/components/schemas/Categoria'
+                $ref: "#/components/schemas/Produto"
         404:
-          description: Produto não encontrado
-          content:
-            application/json:
-              example: "Not Found"
+          $ref: "#/components/responses/Notfound-Produto"
   /admin/product/{id}:
     parameters:
         - name: id
@@ -284,27 +249,9 @@ paths:
             content:
               application/json:
                 schema:
-                  type: object
-                  properties:
-                    id:
-                      type: integer
-                    nome:
-                      type: string
-                    descricao:
-                      type: string
-                    slug:
-                      type: string
-                    preco_unitario:
-                      type: string
-                    estoque:
-                      type: string
-                    _idCategoria:
-                      type: string
+                  $ref: "#/components/schemas/Produto"
           404:
-            description: Categoria não encontrada
-            content:
-              application/sjon:
-                example: "Not Found"
+            $ref: "#/components/responses/Notfound-Produto"
    
     delete:
         security: 
@@ -316,10 +263,7 @@ paths:
           204:
             description: Sucesso
           404:
-            description: Categoria não encontrada
-            content:
-              application/sjon:
-                example: "Not Found"
+            $ref: "#/components/responses/Notfound-Produto"
   /product/find/price={price}:
     get:
       parameters:
@@ -337,29 +281,9 @@ paths:
             content:
               application/json:
                 schema:
-                  type: array
-                  items:
-                    type: object
-                    properties:
-                      id:
-                        type: integer
-                      nome:
-                        type: string
-                      descricao:
-                        type: string
-                      slug:
-                        type: string
-                      preco_unitario:
-                        type: string
-                      estoque:
-                        type: string
-                      _idCategoria:
-                        type: string
+                  $ref: "#/components/schemas/Produtos"
         404:
-          description: Produto não encontrado
-          content:
-            application/json:
-              example: "Not Found"
+          $ref: "#/components/responses/Notfound-Produto"
   /product/find/categoria={categoria}:
     get:
       parameters:
@@ -377,29 +301,9 @@ paths:
             content:
               application/json:
                 schema:
-                  type: array
-                  items:
-                    type: object
-                    properties:
-                      id:
-                        type: integer
-                      nome:
-                        type: string
-                      descricao:
-                        type: string
-                      slug:
-                        type: string
-                      preco_unitario:
-                        type: string
-                      estoque:
-                        type: string
-                      _idCategoria:
-                        type: string
+                  $ref: "#/components/schemas/Produtos"
         404:
-          description: Produto não encontrado
-          content:
-            application/json:
-              example: "Not Found"
+          $ref: "#/components/responses/Notfound-Produto"
   /product/find/estoque={estoque}:
     get:
       parameters:
@@ -417,29 +321,9 @@ paths:
             content:
               application/json:
                 schema:
-                  type: array
-                  items:
-                    type: object
-                    properties:
-                      id:
-                        type: integer
-                      nome:
-                        type: string
-                      descricao:
-                        type: string
-                      slug:
-                        type: string
-                      preco_unitario:
-                        type: string
-                      estoque:
-                        type: string
-                      _idCategoria:
-                        type: string
+                  $ref: "#/components/schemas/Produtos"
         404:
-          description: Produto não encontrado
-          content:
-            application/json:
-              example: "Not Found" 
+          $ref: "#/components/responses/Notfound-Produto"
   /accounts:
     get:
       summary: Recupera todos os usuarios
@@ -451,32 +335,7 @@ paths:
           content:
             application/json:
               schema:
-                type: array
-                items:
-                  type: object
-                  properties:
-                    id:
-                      type: integer
-                    nome:
-                      type: string
-                    email:
-                      type: string
-                    senha:
-                      type: string
-                    cpf:
-                      type: string
-                    telefone:
-                      type: string
-                    rua:
-                      type: string
-                    numero:
-                      type: string
-                    cep:
-                      type: string
-                    cidade:
-                      type: string
-                    estado:
-                      type: string
+                $ref: "#/components/schemas/contas"
   /admin/accounts:
     post:
       security: 
@@ -516,30 +375,7 @@ paths:
           content:
             application/json:
               schema:
-                  type: object
-                  properties:
-                    id:
-                      type: integer
-                    nome:
-                      type: string
-                    email:
-                      type: string
-                    senha:
-                      type: string
-                    cpf:
-                      type: string
-                    telefone:
-                      type: string
-                    rua:
-                      type: string
-                    numero:
-                      type: string
-                    cep:
-                      type: string
-                    cidade:
-                      type: string
-                    estado:
-                      type: string
+                $ref: "#/components/schemas/conta"
   /accounts/{id}:
     parameters:
         - name: id
@@ -557,30 +393,7 @@ paths:
           content:
             application/json:
               schema:
-                  type: object
-                  properties:
-                    id:
-                      type: integer
-                    nome:
-                      type: string
-                    email:
-                      type: string
-                    senha:
-                      type: string
-                    cpf:
-                      type: string
-                    telefone:
-                      type: string
-                    rua:
-                      type: string
-                    numero:
-                      type: string
-                    cep:
-                      type: string
-                    cidade:
-                      type: string
-                    estado:
-                      type: string
+                $ref: "#/components/schemas/conta"
         404:
           description: Usuario não encontrado
           content:
@@ -631,30 +444,7 @@ paths:
             content:
               application/json:
                 schema:
-                  type: object
-                  properties:
-                    id:
-                      type: integer
-                    nome:
-                      type: string
-                    email:
-                      type: string
-                    senha:
-                      type: string
-                    cpf:
-                      type: string
-                    telefone:
-                      type: string
-                    rua:
-                      type: string
-                    numero:
-                      type: string
-                    cep:
-                      type: string
-                    cidade:
-                      type: string
-                    estado:
-                      type: string
+                  $ref: "#/components/schemas/conta"
           404:
             description: Usuario não encontrado
             content:
@@ -687,7 +477,9 @@ paths:
               type: object
               properties:
                 _idCliente:
-                  type: integer
+                  oneOf:
+                  - type: string
+                  - type: integer
                 rua_entrega:
                   type: string
                 numero_entrega:
@@ -706,7 +498,9 @@ paths:
                     type: object
                     properties:
                       _idProduto:
-                        type: integer
+                        oneOf:
+                        - type: string
+                        - type: integer
                       quantidade:
                         type: integer
                       desconto:
@@ -722,9 +516,13 @@ paths:
                   type: object
                   properties:
                     _idPedido:
-                      type: integer
+                      oneOf:
+                      - type: string
+                      - type: integer
                     _idCliente:
-                      type: integer
+                      oneOf:
+                      - type: string
+                      - type: integer
                     rua_entrega:
                       type: string
                     numero_entrega:
@@ -743,7 +541,9 @@ paths:
                         type: object
                         properties:
                           _idProduto:
-                            type: integer
+                            oneOf:
+                            - type: string
+                            - type: integer
                           quantidade:
                             type: integer
                           desconto:
@@ -770,9 +570,13 @@ paths:
                   type: object
                   properties:
                     _idPedido:
-                      type: integer
+                      oneOf:
+                      - type: string
+                      - type: integer
                     _idCliente:
-                      type: integer
+                      oneOf:
+                      - type: string
+                      - type: integer
                     rua_entrega:
                       type: string
                     numero_entrega:
@@ -791,7 +595,9 @@ paths:
                         type: object
                         properties:
                           _idProduto:
-                            type: integer
+                           oneOf:
+                            - type: string
+                            - type: integer
                           quantidade:
                             type: integer
                           desconto:
@@ -809,7 +615,9 @@ components:
       type: object
       properties:
               id:
-                type: integer
+                oneOf:
+                - type: string
+                - type: integer
               nome:
                 type: string
               status:
@@ -818,9 +626,69 @@ components:
       type: array
       items:
         $ref: "#/components/schemas/Categoria"
+    Produto:
+      type: object
+      properties:
+        id:
+         oneOf:
+          - type: string
+          - type: integer
+        nome:
+          type: string
+        descricao:
+          type: string
+        slug:
+          type: string
+        preco_unitario:
+          type: string
+        estoque:
+          type: string
+        categoria:
+          $ref: '#/components/schemas/Categoria'
+    Produtos:
+      type: array
+      items:
+        $ref: "#/components/schemas/Produto"
+    conta:
+      type: object
+      properties:
+        id:
+         oneOf:
+          - type: string
+          - type: integer
+        nome:
+          type: string
+        email:
+          type: string
+        senha:
+          type: string
+        cpf:
+          type: string
+        telefone:
+          type: string
+        rua:
+          type: string
+        numero:
+          type: string
+        cep:
+          type: string
+        cidade:
+          type: string
+        estado:
+          type: string
+    contas:
+      type: array
+      items:
+        $ref: "#/components/schemas/conta"
+    
   responses:
-      Notfound:
+      Notfound-Categoria:
         description : Categoria não encontrada
+        content:
+          application/json:
+            example: "Not Found"
+      Notfound-Produto:
+        description : Produto não encontrado
         content:
           application/json:
             example: "Not Found"
