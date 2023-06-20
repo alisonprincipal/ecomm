@@ -37,7 +37,11 @@ export class CategorieController {
     try {
       const idCategoria = req.params.id;
       const dadosBody = req.body;
-      const categoria = await categories.findByIdAndUpdate(idCategoria, dadosBody, { new: true });
+      const categoria = await categories.findByIdAndUpdate(
+        idCategoria,
+        dadosBody,
+        { runValidators: true, new: true },
+      );
       return categoria ? res.status(200).json(categoria) : res.status(404).json({ message: "Not found" });
     } catch (error) {
       res.status(500).json({ message: error.message });

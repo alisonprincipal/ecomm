@@ -1,5 +1,6 @@
 import express from "express";
 import { categories } from "./categorieRoutes.js";
+import { products } from "./productsRoutes.js";
 
 export const routes = (app) => {
   app.route("/").get((_, res) => {
@@ -9,5 +10,6 @@ export const routes = (app) => {
   app.use(
     express.json(),
     categories,
+    products,
   );
 };
