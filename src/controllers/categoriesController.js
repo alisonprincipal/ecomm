@@ -20,7 +20,7 @@ export class CategorieController {
     } catch (error) {
       res.status(500).json({ message: error.message });
     }
-    return true;
+    return "";
   };
 
   static criarCategoria = async (req, res) => {
