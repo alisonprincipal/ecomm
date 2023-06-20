@@ -16,15 +16,16 @@ export class CategoryService {
 
   static async findCategoryById(idCategoria) {
     try {
-      const request = await fetch("http://localhost:3000/categories");
+      const request = await fetch(`http://localhost:3000/categories/${idCategoria}`);
       const response = await request.json();
-      const buscandoCategoriaPorId = response.filter((categoria) => categoria.id == idCategoria);
-      const produto = buscandoCategoriaPorId[0];
-      if (produto) {
+
+      if (response.id) {
         console.log("response status:", chalk.green(request.status));
-        return produto;
+        return response;
       }
       console.log("response status:", chalk.red(404));
+
+      return false;
     } catch (error) {
       console.log(error);
     }

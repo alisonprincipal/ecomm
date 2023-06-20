@@ -17,6 +17,7 @@
         "quotes": [2, "double", { "avoidEscape": true, "allowTemplateLiterals": true }],
         // remove erros de import
         "import/prefer-default-export": "off" ,
+        "import/extensions": "off",
         // erros de nomes de propriedades
         "no-param-reassign":"off",
         // erros de igualidade nos sinais

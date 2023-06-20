@@ -3,7 +3,9 @@
 import chalk from "chalk";
 import fs from "fs";
 
-import { CategoryService } from "./CategoryService";
+import {
+  CategoryService
+} from "./CategoryService.js";
 
 const argumentosComando = process.argv;
 const processarComando = async () => {
@@ -17,8 +19,8 @@ const processarComando = async () => {
 
     case "--recuperarCategoriaPorId":
 
-      const idProduct = Number(argumentosComando[3]);
-      const categoriaPorId = await CategoryService.findCategoryById(idProduct);
+      const idCategoria = Number(argumentosComando[3]);
+      const categoriaPorId = await CategoryService.findCategoryById(idCategoria);
       // so retorna a mensagem personalizada se o produto for encontrado
       // eslint-disable-next-line no-unused-expressions
       categoriaPorId && console.log(chalk.black.bgYellow("Categoria encontrada"), categoriaPorId);
