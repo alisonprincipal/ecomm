@@ -1,0 +1,27 @@
+{
+    "env": {
+        "browser": true,
+        "es2021": true
+    },
+    "extends": "airbnb-base",
+    "parserOptions": {
+        "ecmaVersion": "latest",
+        "sourceType": "module"
+    },
+    "rules": {
+        //remove o erro do console
+        "no-console": "off",
+        //remove erro de linebreak
+        "linebreak-style": 0,
+        // define aspas duplas como preferência
+        "quotes": [2, "double", { "avoidEscape": true, "allowTemplateLiterals": true }],
+        // remove erros de import
+        "import/prefer-default-export": "off" ,
+        "import/extensions": "off",
+        // erros de nomes de propriedades
+        "no-param-reassign":"off",
+        // erros de igualidade nos sinais
+        "eqeqeq":"off"
+
+    }
+}
