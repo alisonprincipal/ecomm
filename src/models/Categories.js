@@ -14,7 +14,7 @@ const CategorieSchema = new mongoose.Schema(
         validator(value) {
           return /^[^0-9].*$/.test(value);
         },
-        message: "O nome não pode iniciar com números",
+        message: "The name cannot start with numbers",
       },
     },
 
