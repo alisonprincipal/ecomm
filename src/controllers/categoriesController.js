@@ -1,6 +1,3 @@
-import {
-  categories,
-} from "../models/Categories.js";
 import { ativaCategoriaService } from "../services/categories/ativaCategoriaId.service.js";
 import { atualizarCategoriaService } from "../services/categories/atualizarCategoriaId.service.js";
 import { criarCategoriaService } from "../services/categories/criarCategoria.service.js";
@@ -22,13 +19,12 @@ export class CategorieController {
     try {
       const idCategoria = req.params.id;
       const categoria = await listarCategoriaIdService(idCategoria);
-      if (categoria) {
-        res.status(200).json(categoria);
-      } else {
-        res.status(404).json({ message: "Not found" });
-      }
+      return res.status(200).json(categoria);
     } catch (error) {
-      res.status(500).json({ message: error.message });
+      if (error instanceof Error) {
+        return res.status(404).json({ message: error.message });
+      }
+      return res.status(500).json({ message: error.message });
     }
   };
 
@@ -36,12 +32,12 @@ export class CategorieController {
     try {
       const bodyCategoria = req.body;
       const categoria = await criarCategoriaService(bodyCategoria);
-      res.status(201).json(categoria);
+      return res.status(201).json(categoria);
     } catch (error) {
       if (error.name == "ValidationError") {
-        res.status(409).json({ message: error.message });
+        return res.status(409).json({ message: error.message });
       }
-      res.status(500).json({ message: error.message });
+      return res.status(500).json({ message: error.message });
     }
   };
 
@@ -50,16 +46,15 @@ export class CategorieController {
       const idCategoria = req.params.id;
       const dadosBody = req.body;
       const categoria = await atualizarCategoriaService(idCategoria, dadosBody);
-      if (categoria) {
-        res.status(200).json(categoria);
-      } else {
-        res.status(404).json({ message: "Not found" });
-      }
+      return res.status(200).json(categoria);
     } catch (error) {
-      if (error.name == "ValidationError") {
-        res.status(409).json({ message: error.message });
+      if (error.message == "Category  not found") {
+        return res.status(404).json({ message: error.message });
       }
-      res.status(500).json({ message: error.message });
+      if (error.name == "ValidationError") {
+        return res.status(409).json({ message: error.message });
+      }
+      return res.status(500).json({ message: error.message });
     }
   };
 
@@ -68,27 +63,28 @@ export class CategorieController {
       const idCategoria = req.params.id;
       const dadosBody = req.body;
       const ativaCategoria = await ativaCategoriaService(idCategoria, dadosBody);
-      if (!ativaCategoria) {
-        return res.status(404).json({ message: "Not found" });
-      }
-      if (ativaCategoria == "ATIVA") {
-        return res.status(400).json({ message: "Categorie is active" });
-      }
-      res.status(200).json(ativaCategoria);
+      return res.status(200).json(ativaCategoria);
     } catch (error) {
-      res.status(500).json({ message: error.message });
+      if (error.message == "Category not found") {
+        return res.status(404).json({ message: error.message });
+      }
+      if (error instanceof Error) {
+        return res.status(409).json({ message: error.message });
+      }
+      return res.status(500).json({ message: error.message });
     }
-    return "";
   };
 
   static deletaCategoriaPorId = async (req, res) => {
     try {
       const idCategoria = req.params.id;
-      const deletaCategoria = await deletaCategoriaService(idCategoria);
-      return deletaCategoria ? res.status(204).send() : res.status(404).json({ message: "Not found" });
+      await deletaCategoriaService(idCategoria);
+      return res.status(204).send();
     } catch (error) {
-      res.status(500).json({ message: error.message });
+      if (error instanceof Error) {
+        return res.status(404).json({ message: error.message });
+      }
+      return res.status(500).json({ message: error.message });
     }
-    return "";
   };
 }
