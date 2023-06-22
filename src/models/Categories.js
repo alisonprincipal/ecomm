@@ -20,9 +20,10 @@ const CategorieSchema = new mongoose.Schema(
 
     status: {
       type: String,
+      required: true,
     },
   },
 
 );
 
-export const categories = mongoose.model("categories1", CategorieSchema);
+export const categories = mongoose.model("categories", CategorieSchema);

@@ -44,11 +44,11 @@ const ProductSchema = new mongoose.Schema(
     },
     categoria: {
       type: mongoose.Schema.Types.ObjectId,
-      ref: "categories1",
+      ref: "categories",
       required: true,
     },
   },
 
 );
 
-export const products = mongoose.model("Products1", ProductSchema);
+export const products = mongoose.model("Products", ProductSchema);

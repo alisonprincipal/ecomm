@@ -21,7 +21,10 @@
         // erros de nomes de propriedades
         "no-param-reassign":"off",
         // erros de igualidade nos sinais
-        "eqeqeq":"off"
+        "eqeqeq":"off",
+         // erros de imports undefined
+        "no-undef":"off"
+        
 
     }
 }
