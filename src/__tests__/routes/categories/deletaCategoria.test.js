@@ -1,4 +1,3 @@
-/* eslint-disable no-underscore-dangle */
 import request from "supertest";
 import { app } from "../../../main.js";
 

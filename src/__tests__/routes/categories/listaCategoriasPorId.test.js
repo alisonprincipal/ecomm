@@ -1,5 +1,3 @@
-/* eslint-disable no-underscore-dangle */
-
 import request from "supertest";
 import { app } from "../../../main.js";
 import { deletaDadosTesteCategoria } from "../../../_dadosTeste_/deletaDados.js";

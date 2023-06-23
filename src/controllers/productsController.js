@@ -54,6 +54,9 @@ export class ProductsController {
       if (error.message == "Product not found") {
         return res.status(404).json({ message: error.message });
       }
+      if (error.message == "Category not found") {
+        return res.status(404).json({ message: error.message });
+      }
       if (error instanceof Error) {
         return res.status(409).json({ message: error.message });
       }

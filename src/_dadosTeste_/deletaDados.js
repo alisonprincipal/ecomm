@@ -7,3 +7,8 @@ export const deletaDadosTesteCategoria = async (id) => {
     .delete(`/categories/${id}`)
     .expect(204);
 };
+export const deletaDadosTesteProduto = async (id) => {
+  await request(app)
+    .delete(`/products/${id}`)
+    .expect(204);
+};

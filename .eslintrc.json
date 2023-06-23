@@ -23,7 +23,11 @@
         // erros de igualidade nos sinais
         "eqeqeq":"off",
          // erros de imports undefined
-        "no-undef":"off"
+        "no-undef":"off",
+        //underline em Id
+        "no-underscore-dangle":"off",
+        // error de dependencias 'estranhas'
+        "import/no-extraneous-dependencies":"off"
         
 
     }
