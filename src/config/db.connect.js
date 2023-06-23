@@ -1,5 +1,7 @@
 import mongoose from "mongoose";
+import dotenv from "dotenv";
 
-mongoose.connect("mongodb://admin:secret@localhost:27017/ecomm?authSource=admin");
+dotenv.config();
+mongoose.connect(process.env.DB);
 
 export const db = mongoose.connection;

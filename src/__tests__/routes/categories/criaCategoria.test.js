@@ -1,8 +1,10 @@
+/* eslint-disable no-underscore-dangle */
 import request from "supertest";
 import { app } from "../../../main.js";
+import { deletaDadosTesteCategoria } from "../../../_dadosTeste_/deletaDados.js";
 
 describe("Testando metodo POST da rota /categories", () => {
-  it("Deve cadastrar um objeto e retornar status 201", async () => {
+  test("Deve cadastrar um objeto e retornar status 201", async () => {
     const objetoRetorno = {
       nome: "CATEGORIA TESTE JEST",
       status: "ATIVA",
@@ -17,9 +19,11 @@ describe("Testando metodo POST da rota /categories", () => {
       .expect(201);
 
     expect(cadastro.body).toEqual(expect.objectContaining(objetoRetorno));
+
+    await deletaDadosTesteCategoria(cadastro.body._id);
   });
 
-  it("Deve retornar status 409 se não for passada as chaves obrigatórias", async () => {
+  test("Deve retornar status 409 se não for passada as chaves obrigatórias", async () => {
     await request(app)
       .post("/categories")
       .send({})
