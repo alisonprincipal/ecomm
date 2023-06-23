@@ -1,5 +1,14 @@
 import dotenv from "dotenv";
+import swaggerUi from "swagger-ui-express";
+import fs from "fs";
+// eslint-disable-next-line import/no-unresolved
+import YAML from "yaml";
 import { app } from "./src/main.js";
+
+const documentoYML = fs.readFileSync("./swagger/ecomm.yaml", "utf8");
+const YMLcovertido = YAML.parse(documentoYML);
+
+app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(YMLcovertido));
 
 dotenv.config();
 const PORT = process.env.PORT || 3000;
