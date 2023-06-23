@@ -1,7 +1,6 @@
 import dotenv from "dotenv";
 import swaggerUi from "swagger-ui-express";
 import fs from "fs";
-// eslint-disable-next-line import/no-unresolved
 import YAML from "yaml";
 import { app } from "./src/main.js";
 
