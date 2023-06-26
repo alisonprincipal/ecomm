@@ -6,7 +6,7 @@ import { app } from "./src/main.js";
 
 const documentoYML = fs.readFileSync("./swagger/ecomm.yaml", "utf8");
 const YMLcovertido = YAML.parse(documentoYML);
-
+// expondo documentação do arquivo yaml no endpoint
 app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(YMLcovertido));
 
 dotenv.config();

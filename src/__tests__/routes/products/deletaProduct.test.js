@@ -10,7 +10,7 @@ describe("Testando metodo DELETE da rota /products/:id", () => {
       slug: "notebook-samsung",
       preco: 3523,
       estoque: 1,
-      categoria: "6495fc12213263ded90781f3",
+      categoria: "6499b9e45fbca9051ee86f2d",
     };
 
     const cadastro = await request(app)

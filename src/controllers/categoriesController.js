@@ -7,84 +7,39 @@ import { listarCategoriasService } from "../services/categories/listarCategories
 
 export class CategorieController {
   static listarCategorias = async (_, res) => {
-    try {
-      const allCategories = await listarCategoriasService();
-      res.status(200).json(allCategories);
-    } catch (error) {
-      res.status(500).json({ message: error.message });
-    }
+    const allCategories = await listarCategoriasService();
+    res.status(200).json(allCategories);
   };
 
   static listarCategoriaPorId = async (req, res) => {
-    try {
-      const idCategoria = req.params.id;
-      const categoria = await listarCategoriaIdService(idCategoria);
-      return res.status(200).json(categoria);
-    } catch (error) {
-      if (error instanceof Error) {
-        return res.status(404).json({ message: error.message });
-      }
-      return res.status(500).json({ message: error.message });
-    }
+    const idCategoria = req.params.id;
+    const categoria = await listarCategoriaIdService(idCategoria);
+    return res.status(200).json(categoria);
   };
 
   static criarCategoria = async (req, res) => {
-    try {
-      const bodyCategoria = req.body;
-      const categoria = await criarCategoriaService(bodyCategoria);
-      return res.status(201).json(categoria);
-    } catch (error) {
-      if (error.name == "ValidationError") {
-        return res.status(409).json({ message: error.message });
-      }
-      return res.status(500).json({ message: error.message });
-    }
+    const bodyCategoria = req.body;
+    const categoria = await criarCategoriaService(bodyCategoria);
+    return res.status(201).json(categoria);
   };
 
   static atualizaCategoriaPorId = async (req, res) => {
-    try {
-      const idCategoria = req.params.id;
-      const dadosBody = req.body;
-      const categoria = await atualizarCategoriaService(idCategoria, dadosBody);
-      return res.status(200).json(categoria);
-    } catch (error) {
-      if (error.message == "Category  not found") {
-        return res.status(404).json({ message: error.message });
-      }
-      if (error.name == "ValidationError") {
-        return res.status(409).json({ message: error.message });
-      }
-      return res.status(500).json({ message: error.message });
-    }
+    const idCategoria = req.params.id;
+    const dadosBody = req.body;
+    const categoria = await atualizarCategoriaService(idCategoria, dadosBody);
+    return res.status(200).json(categoria);
   };
 
   static ativaCategoriaPorId = async (req, res) => {
-    try {
-      const idCategoria = req.params.id;
-      const dadosBody = req.body;
-      const ativaCategoria = await ativaCategoriaService(idCategoria, dadosBody);
-      return res.status(200).json(ativaCategoria);
-    } catch (error) {
-      if (error.message == "Category not found") {
-        return res.status(404).json({ message: error.message });
-      }
-      if (error instanceof Error) {
-        return res.status(409).json({ message: error.message });
-      }
-      return res.status(500).json({ message: error.message });
-    }
+    const idCategoria = req.params.id;
+    const dadosBody = req.body;
+    const ativaCategoria = await ativaCategoriaService(idCategoria, dadosBody);
+    return res.status(200).json(ativaCategoria);
   };
 
   static deletaCategoriaPorId = async (req, res) => {
-    try {
-      const idCategoria = req.params.id;
-      await deletaCategoriaService(idCategoria);
-      return res.status(204).send();
-    } catch (error) {
-      if (error instanceof Error) {
-        return res.status(404).json({ message: error.message });
-      }
-      return res.status(500).json({ message: error.message });
-    }
+    const idCategoria = req.params.id;
+    await deletaCategoriaService(idCategoria);
+    return res.status(204).send();
   };
 }

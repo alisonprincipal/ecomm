@@ -6,8 +6,5 @@ export const atualizarCategoriaService = async (id, body) => {
     body,
     { runValidators: true, new: true },
   );
-  if (!atualizandoCategoria) {
-    throw new Error("Category  not found");
-  }
   return atualizandoCategoria;
 };
