@@ -4,8 +4,17 @@ services:
   #ao passar build no service eu acesso uma imagem local(que esta sendo criada), no build eu passo o path da img
     build: .
     container_name: ecomm
+
+    depends_on:
+      - mongo-ecomm
     networks:
       - ecomm-bridge
+    links:
+      - mongo-ecomm
+      
+    environment:
+      MONGO_HOST: mongo-ecomm
+      
   
   mongo-ecomm:
     image: mongo

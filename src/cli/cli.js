@@ -4,7 +4,7 @@ import chalk from "chalk";
 import fs from "fs";
 
 import {
-  CategoryService
+  CategoryService,
 } from "./CategoryService.js";
 
 const argumentosComando = process.argv;
